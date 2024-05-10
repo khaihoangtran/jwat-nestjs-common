@@ -1,8 +1,21 @@
-{ 
-    "files": [],
-    "references": [
-        {
-            "path": "./common/tsconfig.json"
-        },
-    ]
-}
+{
+    "compilerOptions": {
+      "target": "ES2021",
+      "module": "CommonJS",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "incremental": true,
+      "skipLibCheck": true,
+      "strictNullChecks": false,
+      "strictBindCallApply": false,
+      "forceConsistentCasingInFileNames": false,
+      "noFallthroughCasesInSwitch": false,
+    }
+  }
+  

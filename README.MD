@@ -10,7 +10,9 @@ disable any flag if needed
 
 change {{name}} with your proto file's name
 
+change directory into protos folder and run this command to generate ts file
+
 ```bash
-$ cd packages/common/protos
+$ cd common/protos
 $ protoc --plugin=protoc-gen-ts_proto=..\..\..\node_modules\.bin\protoc-gen-ts_proto.cmd --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
 ```
