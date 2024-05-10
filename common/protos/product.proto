@@ -5,15 +5,21 @@ import "google/protobuf/timestamp.proto";
 package product;
 
 service ProductService {
-  rpc SearchProduct (SearchProductDto) returns (ResponseMessage) {}
-  rpc FindProductById (FindProductByIdDto) returns (ResponseMessage) {}
-  rpc CreateProduct (CreateProductDto) returns (ResponseMessage) {}
-  rpc UpdateProduct (UpdateProductDto) returns (ResponseMessage) {}
-  rpc OrderRequest (OrderRequestDto) returns (ResponseMessage) {}
-  rpc RemoveProduct (FindProductByIdDto) returns (ResponseMessage) {}
+  rpc SearchProduct (SearchProductDto) returns (ProductsResponseMessage) {}
+  rpc FindProductById (FindProductByIdDto) returns (ProductResponseMessage) {}
+  rpc CreateProduct (CreateProductDto) returns (ProductResponseMessage) {}
+  rpc UpdateProduct (UpdateProductDto) returns (ProductResponseMessage) {}
+  rpc OrderRequest (OrderRequestDto) returns (ProductResponseMessage) {}
+  rpc RemoveProduct (FindProductByIdDto) returns (ProductResponseMessage) {}
 }
 
-message ResponseMessage {
+message ProductResponseMessage {
+  int32 code = 1;
+  optional string message = 2;
+  optional Product product = 3;
+}
+
+message ProductsResponseMessage {
   int32 code = 1;
   optional string message = 2;
   repeated Product products = 3;
