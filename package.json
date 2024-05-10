@@ -1,0 +1,26 @@
+{
+  "name": "clt-jwat-common",
+  "version": "1.0.0",
+  "description": "Contains sharing resource between some services in jwat-lession",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuatHuynh/clt-jwat-common.git"
+  },
+  "keywords": [
+    "jwat",
+    "clt"
+  ],
+  "author": "clt-jwat-team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuatHuynh/clt-jwat-common/issues"
+  },
+  "homepage": "https://github.com/LuatHuynh/clt-jwat-common#readme",
+  "dependencies": {
+    "ts-proto": "^1.174.0"
+  }
+}
