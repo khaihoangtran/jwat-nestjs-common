@@ -1,8 +1,8 @@
 {
   "name": "clt-jwat-common",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Contains sharing resource between some services in jwat-lession",
-  "main": "./packages",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,5 +30,8 @@
   },
   "files": [
     "packages"
+  ],
+  "workspaces": [
+    "packages/*"
   ]
 }

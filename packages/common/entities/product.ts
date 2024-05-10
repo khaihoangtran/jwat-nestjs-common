@@ -2,14 +2,12 @@
 // versions:
 //   protoc-gen-ts_proto  v1.174.0
 //   protoc               v5.26.1
-// source: packages/protos/product.proto
+// source: product.proto
 
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
-import { Observable } from "rxjs";
-
-export const protobufPackage = "product";
+import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
+import { wrappers } from 'protobufjs';
+import { Observable } from 'rxjs';
 
 export interface ResponseMessage {
   code: number;
@@ -72,11 +70,14 @@ export interface Products {
   products: Product[];
 }
 
-export const PRODUCT_PACKAGE_NAME = "product";
+export const PRODUCT_PACKAGE_NAME = 'product';
 
-wrappers[".google.protobuf.Timestamp"] = {
+wrappers['.google.protobuf.Timestamp'] = {
   fromObject(value: Date) {
-    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+    return {
+      seconds: value.getTime() / 1000,
+      nanos: (value.getTime() % 1000) * 1e6,
+    };
   },
   toObject(message: { seconds: number; nanos: number }) {
     return new Date(message.seconds * 1000 + message.nanos / 1e6);
@@ -98,41 +99,65 @@ export interface ProductServiceClient {
 }
 
 export interface ProductServiceController {
-  searchProduct(request: SearchProductDto): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
+  searchProduct(
+    request: SearchProductDto,
+  ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 
   findProductById(
     request: FindProductByIdDto,
   ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 
-  createProduct(request: CreateProductDto): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
+  createProduct(
+    request: CreateProductDto,
+  ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 
-  updateProduct(request: UpdateProductDto): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
+  updateProduct(
+    request: UpdateProductDto,
+  ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 
-  orderRequest(request: OrderRequestDto): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
+  orderRequest(
+    request: OrderRequestDto,
+  ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 
-  removeProduct(request: FindProductByIdDto): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
+  removeProduct(
+    request: FindProductByIdDto,
+  ): Promise<ResponseMessage> | Observable<ResponseMessage> | ResponseMessage;
 }
 
 export function ProductServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      "searchProduct",
-      "findProductById",
-      "createProduct",
-      "updateProduct",
-      "orderRequest",
-      "removeProduct",
+      'searchProduct',
+      'findProductById',
+      'createProduct',
+      'updateProduct',
+      'orderRequest',
+      'removeProduct',
     ];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcStreamMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
   };
 }
 
-export const PRODUCT_SERVICE_NAME = "ProductService";
+export const PRODUCT_SERVICE_NAME = 'ProductService';

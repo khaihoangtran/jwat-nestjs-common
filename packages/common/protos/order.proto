@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-import "packages/protos/product.proto";
+import "product.proto";
 
 package order;
 
