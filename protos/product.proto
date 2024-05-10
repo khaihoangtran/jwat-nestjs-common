@@ -44,12 +44,13 @@ message CreateProductDto {
 }
 
 message UpdateProductDto {
-  optional string name = 1;
-  optional string category = 2;
-  optional string make = 3;  
-  optional string description = 4;
-  optional float price = 5;
-  optional int32 quantity = 6;
+  string id = 1;
+  optional string name = 2;
+  optional string category = 3;
+  optional string make = 4;  
+  optional string description = 5;
+  optional float price = 6;
+  optional int32 quantity = 7;
 }
 
 message OrderRequestDto {

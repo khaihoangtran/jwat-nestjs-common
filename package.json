@@ -12,7 +12,11 @@
   },
   "keywords": [
     "jwat",
-    "clt"
+    "clt",
+    "clt-jwat",
+    "clt-jwat-team",
+    "cl",
+    "clt-j"
   ],
   "author": "clt-jwat-team",
   "license": "ISC",
@@ -21,6 +25,7 @@
   },
   "homepage": "https://github.com/LuatHuynh/clt-jwat-common#readme",
   "dependencies": {
+    "@nestjs/microservices": "^10.3.8",
     "ts-proto": "^1.174.0"
   }
 }
