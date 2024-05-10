@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "CommonJS",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "forceConsistentCasingInFileNames": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "outDir": "dist",
+        "paths": {
+            "@jwat/protos/*": [
+                "./packages/entities/packages/protos/*"
+            ]
+        }
+    },
+    "include": [
+        "packages/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
