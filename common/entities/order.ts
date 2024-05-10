@@ -5,10 +5,10 @@
 // source: order.proto
 
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
-import { Observable } from "rxjs";
-import { Product } from "./product";
+import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
+import { wrappers } from 'protobufjs';
+import { Observable } from 'rxjs';
+import { Product } from './product';
 
 export interface OrderResponse {
   code: number;
@@ -43,7 +43,7 @@ export interface UpdateOrderStatusDto {
 }
 
 export interface Order {
-  orderId: string;
+  id: string;
   phoneNumber: string;
   email: string;
   customerName: string;
@@ -84,11 +84,14 @@ export interface OrderFilterDto {
   toDate?: Date | undefined;
 }
 
-export const ORDER_PACKAGE_NAME = "order";
+export const ORDER_PACKAGE_NAME = 'order';
 
-wrappers[".google.protobuf.Timestamp"] = {
+wrappers['.google.protobuf.Timestamp'] = {
   fromObject(value: Date) {
-    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+    return {
+      seconds: value.getTime() / 1000,
+      nanos: (value.getTime() % 1000) * 1e6,
+    };
   },
   toObject(message: { seconds: number; nanos: number }) {
     return new Date(message.seconds * 1000 + message.nanos / 1e6);
@@ -108,36 +111,60 @@ export interface OrderServiceClient {
 }
 
 export interface OrderServiceController {
-  findOrderById(request: OrderIdDto): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
+  findOrderById(
+    request: OrderIdDto,
+  ): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
 
-  findOrderWithFilter(request: OrderFilterDto): Promise<OrdersResponse> | Observable<OrdersResponse> | OrdersResponse;
+  findOrderWithFilter(
+    request: OrderFilterDto,
+  ): Promise<OrdersResponse> | Observable<OrdersResponse> | OrdersResponse;
 
-  createOrder(request: CreateOrderDto): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
+  createOrder(
+    request: CreateOrderDto,
+  ): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
 
-  updateOrderStatus(request: UpdateOrderStatusDto): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
+  updateOrderStatus(
+    request: UpdateOrderStatusDto,
+  ): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
 
-  deleteOrder(request: OrderIdDto): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
+  deleteOrder(
+    request: OrderIdDto,
+  ): Promise<OrderResponse> | Observable<OrderResponse> | OrderResponse;
 }
 
 export function OrderServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      "findOrderById",
-      "findOrderWithFilter",
-      "createOrder",
-      "updateOrderStatus",
-      "deleteOrder",
+      'findOrderById',
+      'findOrderWithFilter',
+      'createOrder',
+      'updateOrderStatus',
+      'deleteOrder',
     ];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("OrderService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcMethod('OrderService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("OrderService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcStreamMethod('OrderService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
   };
 }
 
-export const ORDER_SERVICE_NAME = "OrderService";
+export const ORDER_SERVICE_NAME = 'OrderService';

@@ -5,9 +5,9 @@
 // source: product.proto
 
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
-import { Observable } from "rxjs";
+import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
+import { wrappers } from 'protobufjs';
+import { Observable } from 'rxjs';
 
 export interface ProductResponseMessage {
   code: number;
@@ -76,11 +76,14 @@ export interface Products {
   products: Product[];
 }
 
-export const PRODUCT_PACKAGE_NAME = "product";
+export const PRODUCT_PACKAGE_NAME = 'product';
 
-wrappers[".google.protobuf.Timestamp"] = {
+wrappers['.google.protobuf.Timestamp'] = {
   fromObject(value: Date) {
-    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+    return {
+      seconds: value.getTime() / 1000,
+      nanos: (value.getTime() % 1000) * 1e6,
+    };
   },
   toObject(message: { seconds: number; nanos: number }) {
     return new Date(message.seconds * 1000 + message.nanos / 1e6);
@@ -90,7 +93,9 @@ wrappers[".google.protobuf.Timestamp"] = {
 export interface ProductServiceClient {
   searchProduct(request: SearchProductDto): Observable<ProductsResponseMessage>;
 
-  findProductById(request: FindProductByIdDto): Observable<ProductResponseMessage>;
+  findProductById(
+    request: FindProductByIdDto,
+  ): Observable<ProductResponseMessage>;
 
   createProduct(request: CreateProductDto): Observable<ProductResponseMessage>;
 
@@ -98,55 +103,89 @@ export interface ProductServiceClient {
 
   orderRequest(request: OrderRequestDto): Observable<ProductResponseMessage>;
 
-  removeProduct(request: FindProductByIdDto): Observable<ProductResponseMessage>;
+  removeProduct(
+    request: FindProductByIdDto,
+  ): Observable<ProductResponseMessage>;
 }
 
 export interface ProductServiceController {
   searchProduct(
     request: SearchProductDto,
-  ): Promise<ProductsResponseMessage> | Observable<ProductsResponseMessage> | ProductsResponseMessage;
+  ):
+    | Promise<ProductsResponseMessage>
+    | Observable<ProductsResponseMessage>
+    | ProductsResponseMessage;
 
   findProductById(
     request: FindProductByIdDto,
-  ): Promise<ProductResponseMessage> | Observable<ProductResponseMessage> | ProductResponseMessage;
+  ):
+    | Promise<ProductResponseMessage>
+    | Observable<ProductResponseMessage>
+    | ProductResponseMessage;
 
   createProduct(
     request: CreateProductDto,
-  ): Promise<ProductResponseMessage> | Observable<ProductResponseMessage> | ProductResponseMessage;
+  ):
+    | Promise<ProductResponseMessage>
+    | Observable<ProductResponseMessage>
+    | ProductResponseMessage;
 
   updateProduct(
     request: UpdateProductDto,
-  ): Promise<ProductResponseMessage> | Observable<ProductResponseMessage> | ProductResponseMessage;
+  ):
+    | Promise<ProductResponseMessage>
+    | Observable<ProductResponseMessage>
+    | ProductResponseMessage;
 
   orderRequest(
     request: OrderRequestDto,
-  ): Promise<ProductResponseMessage> | Observable<ProductResponseMessage> | ProductResponseMessage;
+  ):
+    | Promise<ProductResponseMessage>
+    | Observable<ProductResponseMessage>
+    | ProductResponseMessage;
 
   removeProduct(
     request: FindProductByIdDto,
-  ): Promise<ProductResponseMessage> | Observable<ProductResponseMessage> | ProductResponseMessage;
+  ):
+    | Promise<ProductResponseMessage>
+    | Observable<ProductResponseMessage>
+    | ProductResponseMessage;
 }
 
 export function ProductServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      "searchProduct",
-      "findProductById",
-      "createProduct",
-      "updateProduct",
-      "orderRequest",
-      "removeProduct",
+      'searchProduct',
+      'findProductById',
+      'createProduct',
+      'updateProduct',
+      'orderRequest',
+      'removeProduct',
     ];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method,
+      );
+      GrpcStreamMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor,
+      );
     }
   };
 }
 
-export const PRODUCT_SERVICE_NAME = "ProductService";
+export const PRODUCT_SERVICE_NAME = 'ProductService';
