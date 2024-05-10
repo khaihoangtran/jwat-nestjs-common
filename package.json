@@ -1,5 +1,5 @@
 {
-  "name": "clt-jwat-common",
+  "name": "@jwat/common",
   "version": "1.0.2",
   "description": "Contains sharing resource between some services in jwat-lession",
   "main": "index.js",
