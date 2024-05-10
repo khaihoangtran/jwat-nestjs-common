@@ -14,7 +14,10 @@ change directory into protos folder and run this command to generate ts file
 
 ```bash
 $ cd common/protos
-$ protoc --plugin=protoc-gen-ts_proto=..\..\..\node_modules\.bin\protoc-gen-ts_proto.cmd --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
+## Window
+$ protoc --plugin=protoc-gen-ts_proto=..\..\node_modules\.bin\protoc-gen-ts_proto.cmd --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
+## Mac
+$ protoc --plugin=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
 ```
 
 after that, remove that line: export const protobufPackage = "....";
