@@ -16,14 +16,11 @@
         "emitDecoratorMetadata": true,
         "outDir": "dist",
         "paths": {
-            "@jwat/protos/*": [
+            "@jwat/common/protos/*": [
                 "./packages/entities/packages/protos/*"
             ]
         }
     },
-    "include": [
-        "packages/**/*"
-    ],
     "exclude": [
         "node_modules"
     ]
