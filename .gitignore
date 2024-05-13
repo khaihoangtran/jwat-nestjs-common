@@ -11,8 +11,10 @@
 # bundle
 **/*.d.ts
 **/*.js
+**/*.js.map
 
 # misc
 npm-debug.log
 /**/npm-debug.log
 .npmrc
+*.tsbuildinfo
