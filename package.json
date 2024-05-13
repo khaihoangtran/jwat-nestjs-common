@@ -1,6 +1,6 @@
 {
   "name": "clt-jwat-common",
-  "version": "1.1.13",
+  "version": "1.1.28",
   "description": "Contains sharing resource between some services in jwat-lesson",
   "main": "index.js",
   "scripts": {
