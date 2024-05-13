@@ -20,6 +20,10 @@ $ protoc --plugin=protoc-gen-ts_proto=..\..\node_modules\.bin\protoc-gen-ts_prot
 $ protoc --plugin=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
 ```
 
+after that, remove that line: export const protobufPackage = "....";
+
+and export your entity in index.ts (in root folder)
+
 ## Before publish new version
 
 ```bash
