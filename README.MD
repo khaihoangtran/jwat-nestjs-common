@@ -20,9 +20,11 @@ $ protoc --plugin=protoc-gen-ts_proto=..\..\node_modules\.bin\protoc-gen-ts_prot
 $ protoc --plugin=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=../entities --ts_proto_opt=nestJs=true --ts_proto_opt=useDate=true {{name}}.proto
 ```
 
-after that, remove that line: export const protobufPackage = "....";
+## Before publish new version
 
-export your entity/dto/... in index.ts
+```bash
+$ tsc -b
+```
 
 update version in package.json
 
@@ -30,4 +32,6 @@ push this change to remote
 
 ## Publish new version
 
+```bash
 $ npm publish
+```

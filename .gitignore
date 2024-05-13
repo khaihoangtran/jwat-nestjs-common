@@ -1,1 +1,18 @@
+# dependencies
 /node_modules
+
+# IDE
+/.idea
+/.awcache
+/.vscode
+/.devcontainer
+*.code-workspace
+
+# bundle
+**/*.d.ts
+**/*.js
+
+# misc
+npm-debug.log
+/**/npm-debug.log
+.npmrc
